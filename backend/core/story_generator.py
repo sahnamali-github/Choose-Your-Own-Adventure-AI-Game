@@ -22,13 +22,13 @@ class StoryGenerator:
 
         if api_key and serviceurl:
             return ChatGoogleGenerativeAI(
-                model="gemini-3.8-flash",
+                model="gemini-3.5-flash-lite",
                 google_api_key=api_key,
                 base_url=serviceurl,
             )
 
         return ChatGoogleGenerativeAI(
-            model="gemini-3.8-flash",
+            model="gemini-3.5-flash-lite",
             google_api_key=os.getenv("GOOGLE_API_KEY"),
         )
 
@@ -48,7 +48,10 @@ class StoryGenerator:
             )
         ]).partial(format_instructions=story_parser.get_format_instructions())
 
+        import time
+        start = time.time()
         raw_response = llm.invoke(prompt.invoke({}))
+        print(f"Gemini took {time.time() - start:.1f} seconds")
 
         response_text = raw_response
         if hasattr(raw_response, "content"):

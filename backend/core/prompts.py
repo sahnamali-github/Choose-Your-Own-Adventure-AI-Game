@@ -10,10 +10,10 @@ STORY_PROMPT = """
                 5. At least one path should lead to a winning ending
 
                 Story structure requirements:
-                - Each node should have 2-3 options except for ending nodes
-                - The story should be 3-4 levels deep (including root node)
-                - Add variety in the path lengths (some end earlier, some later)
-                - Make sure there's at least one winning path
+                - Each node that is not an ending has exactly 2 options
+                - The story is exactly 3 levels deep, and the third level nodes are all endings
+                - Each node's content is only 1 or 2 short sentences
+                - Include at least one winning ending and at least one losing ending
 
                 Output your story in this exact JSON structure:
                 {format_instructions}
